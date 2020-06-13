@@ -394,16 +394,18 @@ class CustomPromptBot extends ActivityHandler {
      */
     static async sendSuggestedActions(turnContext, type, questions) {
 		console.log(questions);
-		console.log(questions[type])
-        //var reply = MessageFactory.suggestedActions(questions[type].suggestion, questions[type].question);
-		//var reply = ChoiceFactory.heroCard(questions[type].suggestion, questions[type].question);
-		const buttons = [
-            {type: ActionTypes.ImBack, title: '1. Inline Attachment', value: '1'},
-            {type: ActionTypes.ImBack, title: '2. Internet Attachment', value: '2'},
-            {type: ActionTypes.ImBack, title: '3. Uploaded Attachment', value: '3'}
-        ];
+		console.log(questions[type]);
+		let buttons = [];
+		console.log("length >> " + questions[type].suggestion.length);
+        for(var i=0; i<questions[type].suggestion.length; i++)
+		  buttons.push({ 
+			"type" : ActionTypes.ImBack,
+			"title"  : questions[type].suggestion[i],
+			"value" : questions[type].suggestion[i]
+		}); 
+		console.log(buttons);
         const card = CardFactory.heroCard('', undefined,
-            buttons, {text: 'You can upload an image or select one of the following choices.'});
+            buttons, {text: questions[type].question});
         const reply = {type: ActivityTypes.Message, attachments: [card]};
 		await turnContext.sendActivity(reply);
     }
