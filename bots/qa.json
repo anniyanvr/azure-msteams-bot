@@ -1,0 +1,58 @@
+{
+	"qa1": {
+		"question": "Please choose which SOLIZE service you are interested in",
+		"suggestion": ["Staffing", "Other"]
+	},
+	"qa11": {
+		"question": "Would you like to talk to our SOLIZE agent directly?",
+		"suggestion": ["Yes", "No"]
+	},
+	"qa2": {
+		"question": "Do you already have a job description ?",
+		"suggestion": ["Yes", "No"]
+	},
+	"qa3": {
+		"question": "What type of engineer are you looking for? You can also select 'Other' and tell us if you have other options",
+		"suggestion": ["Mechanical engineer", "IT engineer", "Others"]
+	},
+	"qa311": {
+		"question": "Which industry - Automotive, Heavyindustry, offroad vehicles, robotics… You can also select 'Other' and tell us if you have other options",
+		"suggestion": ["Automotive", "Heavy Industry", "Offroad Vehicles", "Robotics"]
+	},
+	"qa312": {
+		"question": "How many years of experience is required? - 0 -3 years, 3- 5 years, 5 - 7 years, >7 years.",
+		"suggestion": ["0 -3 years", "3- 5 years", "5 - 7 years", ">7 years"]
+	},
+	"qa313": {
+		"question": "What kind of Skillset/Tool Knowledge is required? Please select multiple skillsets if needed. You can also select 'Other' and tell us if you have specific skillsets.",
+		"suggestion": ["CATIA", "NX"]
+	},
+	"qa321": {
+		"question": "Which industry - Automotive, Heavyindustry, offroad vehicles, robotics… You can also select 'Other' and tell us if you have other options",
+		"suggestion": ["Automotive", "Heavy Industry", "Offroad Vehicles", "Robotics"]
+	},
+	"qa322": {
+		"question": "How many years of experience is required? - 0 -3 years, 3- 5 years, 5 - 7 years, >7 years.",
+		"suggestion": ["0 -3 years", "3- 5 years", "5 - 7 years", ">7 years"]
+	},
+	"qa323": {
+		"question": "What kind of Skillset/Tool Knowledge is required? Please select multiple skillsets if needed. You can also select 'Other' and tell us if you have specific skillsets.",
+		"suggestion": ["Java", "Python"]
+	},
+	"qa4": {
+		"question": "Can you tell us the location of the workplace? (Ex. City/State/Zipcode)",
+		"suggestion": ""
+	},
+	"qa5": {
+		"question": "Do you already have a Start Date? When do you need the engineer to start working?",
+		"suggestion": ["ASAP", "Within 1month", "Within 3month", "Unexpect"]
+	},
+	"qa6": {
+		"question": "Can you tell us if you have any other requirements for the position?",
+		"suggestion": ""
+	},
+	"qa7": {
+		"question": "OK! That's all the questions. We'll look into the information you have provided, and our SOLIZE agent will contact you shortly. Do you have any preference on Date and Time for our agent to contact you?",
+		"suggestion": ""
+	}
+}
