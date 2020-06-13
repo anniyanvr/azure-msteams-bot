@@ -1,5 +1,5 @@
 const Recognizers = require('@microsoft/recognizers-text-suite');
-const { ActivityHandler, MessageFactory } = require('botbuilder');
+const { ActionTypes, ActivityTypes, ActivityHandler, MessageFactory, CardFactory } = require('botbuilder');
 const { ChoiceFactory } = require('botbuilder-choices'); 
 const path = require('path');
 const fs = require('fs');
@@ -396,8 +396,16 @@ class CustomPromptBot extends ActivityHandler {
 		console.log(questions);
 		console.log(questions[type])
         //var reply = MessageFactory.suggestedActions(questions[type].suggestion, questions[type].question);
-		var reply = ChoiceFactory.forChannel(turnContext, questions[type].suggestion, questions[type].question);
-        await turnContext.sendActivity(reply);
+		//var reply = ChoiceFactory.heroCard(questions[type].suggestion, questions[type].question);
+		const buttons = [
+            {type: ActionTypes.ImBack, title: '1. Inline Attachment', value: '1'},
+            {type: ActionTypes.ImBack, title: '2. Internet Attachment', value: '2'},
+            {type: ActionTypes.ImBack, title: '3. Uploaded Attachment', value: '3'}
+        ];
+        const card = CardFactory.heroCard('', undefined,
+            buttons, {text: 'You can upload an image or select one of the following choices.'});
+        const reply = {type: ActivityTypes.Message, attachments: [card]};
+		await turnContext.sendActivity(reply);
     }
 	
 	/**
