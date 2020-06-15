@@ -80,6 +80,7 @@ class CustomPromptBot extends ActivityHandler {
 
     // Manages the conversation flow for filling out the user's profile.
     static async fillOutUserProfile(flow, profile, turnContext) {
+        
 		if (flow.lastQuestionAsked == "upload" && turnContext.activity.attachments && turnContext.activity.attachments.length > 0) {
 			// The user sent an attachment and the bot should handle the incoming attachment.
 			console.log(turnContext.activity.attachments.length);
@@ -98,10 +99,21 @@ class CustomPromptBot extends ActivityHandler {
 				await turnContext.sendActivity("Upload file size < 2mb");
 				flow.lastQuestionAsked = question.upload;
 			}
-        }  else {
+        }  else { 
 			const input = turnContext.activity.text;
 			console.log("user input >> " + input);
-			console.log("flow.lastQuestionAsked >> " + flow.lastQuestionAsked);		
+			console.log("flow.lastQuestionAsked >> " + flow.lastQuestionAsked);	
+            if(input == "Start"){
+                flow.lastQuestionAsked = question.none;
+                console.log(profile);
+                profile = {};
+            }else if(input == "End"){
+                flow.lastQuestionAsked = question.none;
+                await turnContext.sendActivity(`OK! Thank you ${ profile.name }. Have a great day!`);
+                console.log(profile);
+                profile = {};
+            }
+
 			let result;
 			switch (flow.lastQuestionAsked) {
 			// If we're just starting off, we haven't asked the user for any information yet.
@@ -196,7 +208,7 @@ class CustomPromptBot extends ActivityHandler {
 						await this.sendSuggestedActions(turnContext, 'qa3',questions);
 						flow.lastQuestionAsked = question.qa3; 
 					}else{
-						await turnContext.sendActivity("Great! You can either upload the document or you can type in the job description.");
+						await turnContext.sendActivity("Great! You can now upload the document.");
 						flow.lastQuestionAsked = question.upload; 
 					}
 					break;
