@@ -124,7 +124,7 @@ class CustomPromptBot extends ActivityHandler {
 				await turnContext.sendActivity('Hi! This is SOLIZE assistant bot.');
                 await turnContext.sendActivity("We assist you in fast staffing placements.");
                 await turnContext.sendActivity('Please tell us your name.');
-				//flow.lastQuestionAsked = question.name;
+				flow.lastQuestionAsked = question.name;
 				break;
 				
 			case question.name:
