@@ -27,7 +27,8 @@ const question = {
 	qa7: 'qa7',
 	qa8: 'qa8',
 	upload: 'upload',
-    none: 'none'
+    	none: 'none',
+	end: 'end'
 };
 
 let questions='';
@@ -107,15 +108,17 @@ class CustomPromptBot extends ActivityHandler {
                 flow.lastQuestionAsked = question.none;
                 console.log(profile);
                 profile = {};
-            }else if(input == "End"){
-                flow.lastQuestionAsked = question.none;
+            }else if(input == "End"){ 
                 await turnContext.sendActivity(`OK! Thank you ${ profile.name }. Have a great day!`);
+		flow.lastQuestionAsked = question.end;
                 console.log(profile);
                 profile = {};
             }
 
 			let result;
 			switch (flow.lastQuestionAsked) {
+				case question.end:
+					break;
 			// If we're just starting off, we haven't asked the user for any information yet.
 			// Ask the user for their name and update the conversation flag.
 			case question.none:
