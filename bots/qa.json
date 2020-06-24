@@ -36,7 +36,7 @@
 		"suggestion": ""
 	},
 	"qa321": {
-		"question": "Which industry - Automotive, Heavyindustry, offroad vehicles, robotics… You can also select 'Other' and tell us if you have other options",
+		"question": "Which industry - Automotive, Heavyindustry, offroad vehicles, robotics You can also select 'Other' and tell us if you have other options",
 		"suggestion": ["Automotive", "Heavy Industry", "Offroad Vehicles", "Robotics", "Others"]
 	},
 	"qa3211": {
@@ -65,6 +65,10 @@
 	},
 	"qa6": {
 		"question": "Can you tell us if you have any other requirements for the position?",
+		"suggestion": ["Yes", "No"]
+	},
+	"qa61": {
+		"question": "Please enter any requirements for the position?",
 		"suggestion": ""
 	},
 	"qa7": {
