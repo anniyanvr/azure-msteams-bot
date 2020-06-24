@@ -16,11 +16,15 @@ const question = {
 	qa2: 'qa2',
 	qa3: 'qa3',
 	qa311: 'qa311',
+	qa3111: 'qa3111',
 	qa312: 'qa312',
 	qa313: 'qa313',
+	qa3131: 'qa3131',
 	qa321: 'qa321',
+	qa3211: 'qa3211',
 	qa322: 'qa322',
 	qa323: 'qa323',
+	qa3231: 'qa3231',
 	qa4: 'qa4',
 	qa5: 'qa5',
 	qa6: 'qa6',
@@ -248,13 +252,31 @@ class CustomPromptBot extends ActivityHandler {
 				result = this.checkOptions(input,questions['qa311'].suggestion);
 				if (result.success) {
 					profile.qa311 = result.name;
-					await this.sendSuggestedActions(turnContext, 'qa312',questions);
-					flow.lastQuestionAsked = question.qa312; 
+					if(result.name == "Others") {
+						await turnContext.sendActivity(questions['qa3111'].question);
+						flow.lastQuestionAsked = question.qa3111; 
+					} else {
+						await this.sendSuggestedActions(turnContext, 'qa312',questions);
+						flow.lastQuestionAsked = question.qa312; 
+					}
 					break;
 				} else {
 					await turnContext.sendActivity(result.message || "I'm sorry, I didn't understand that.");
 					await this.sendSuggestedActions(turnContext, 'qa311',questions);
 					flow.lastQuestionAsked = question.qa311;
+					break;
+				}
+			case question.qa3111:
+				result = this.validateInput(input);
+				if (result.success) {
+					profile.qa3111 = result.name;
+					await this.sendSuggestedActions(turnContext, 'qa312',questions);
+					flow.lastQuestionAsked = question.qa312; 
+					break;
+				} else {
+					await turnContext.sendActivity(result.message || "I'm sorry, I didn't understand that.");
+					await turnContext.sendActivity(questions['qa3111'].question);
+					flow.lastQuestionAsked = question.qa3111; 
 					break;
 				}
 			case question.qa312:
@@ -274,8 +296,13 @@ class CustomPromptBot extends ActivityHandler {
 				result = this.checkOptions(input,questions['qa313'].suggestion);
 				if (result.success) {
 					profile.qa313 = result.name;
-					await this.sendSuggestedActions(turnContext, 'qa4',questions);
-					flow.lastQuestionAsked = question.qa4; 
+					if(result.name == "Others") {
+						await turnContext.sendActivity(questions['qa3131'].question);
+						flow.lastQuestionAsked = question.qa3131; 
+					} else {
+						await this.sendSuggestedActions(turnContext, 'qa4',questions);
+						flow.lastQuestionAsked = question.qa4;
+					}
 					break;
 				} else {
 					await turnContext.sendActivity(result.message || "I'm sorry, I didn't understand that.");
@@ -283,17 +310,48 @@ class CustomPromptBot extends ActivityHandler {
 					flow.lastQuestionAsked = question.qa313;
 					break;
 				}
+			case question.qa3131:
+				result = this.validateInput(input);
+				if (result.success) {
+					profile.qa3131 = result.name;
+					await this.sendSuggestedActions(turnContext, 'qa4',questions);
+					flow.lastQuestionAsked = question.qa4; 
+					break;
+				} else {
+					await turnContext.sendActivity(result.message || "I'm sorry, I didn't understand that.");
+					await turnContext.sendActivity(questions['qa3131'].question);
+					flow.lastQuestionAsked = question.qa3131; 
+					break;
+				}
 			case question.qa321:
 				result = this.checkOptions(input,questions['qa321'].suggestion);
 				if (result.success) {
 					profile.qa321 = result.name;
-					await this.sendSuggestedActions(turnContext, 'qa322',questions);
-					flow.lastQuestionAsked = question.qa322; 
+					if(result.name == "Others") {
+						await turnContext.sendActivity(questions['qa3211'].question);
+						flow.lastQuestionAsked = question.qa3211; 
+					} else {
+						await this.sendSuggestedActions(turnContext, 'qa322',questions);
+						flow.lastQuestionAsked = question.qa322; 
+					}
 					break;
 				} else {
 					await turnContext.sendActivity(result.message || "I'm sorry, I didn't understand that.");
 					await this.sendSuggestedActions(turnContext, 'qa321',questions);
 					flow.lastQuestionAsked = question.qa321;
+					break;
+				}
+			case question.qa3211:
+				result = this.validateInput(input);
+				if (result.success) {
+					profile.qa3211 = result.name;
+					await this.sendSuggestedActions(turnContext, 'qa322',questions);
+					flow.lastQuestionAsked = question.qa322; 
+					break;
+				} else {
+					await turnContext.sendActivity(result.message || "I'm sorry, I didn't understand that.");
+					await turnContext.sendActivity(questions['qa3211'].question);
+					flow.lastQuestionAsked = question.qa3211; 
 					break;
 				}
 			case question.qa322:
@@ -313,13 +371,31 @@ class CustomPromptBot extends ActivityHandler {
 				result = this.checkOptions(input,questions['qa323'].suggestion);
 				if (result.success) {
 					profile.qa323 = result.name;
-					await this.sendSuggestedActions(turnContext, 'qa4',questions);
-					flow.lastQuestionAsked = question.qa4; 
+					if(result.name == "Others") {
+						await turnContext.sendActivity(questions['qa3231'].question);
+						flow.lastQuestionAsked = question.qa3231; 
+					} else {
+						await this.sendSuggestedActions(turnContext, 'qa4',questions);
+						flow.lastQuestionAsked = question.qa4; 
+					}
 					break;
 				} else {
 					await turnContext.sendActivity(result.message || "I'm sorry, I didn't understand that.");
 					await this.sendSuggestedActions(turnContext, 'qa323',questions);
 					flow.lastQuestionAsked = question.qa323; 
+					break;
+				}
+			case question.qa3231:
+				result = this.validateInput(input);
+				if (result.success) {
+					profile.qa3231 = result.name;
+					await this.sendSuggestedActions(turnContext, 'qa4',questions);
+					flow.lastQuestionAsked = question.qa4; 
+					break;
+				} else {
+					await turnContext.sendActivity(result.message || "I'm sorry, I didn't understand that.");
+					await turnContext.sendActivity(questions['qa3231'].question);
+					flow.lastQuestionAsked = question.qa3231; 
 					break;
 				}
 			case question.qa4:
@@ -517,6 +593,10 @@ class CustomPromptBot extends ActivityHandler {
 		var result = this.allLetter(name);
 		console.log(result);
         return result;
+    };
+	static validateInput(input) {
+        const name = input && input.trim();
+        return { success: true, message: name };
     };
 	
 	static allLetter(name) {
