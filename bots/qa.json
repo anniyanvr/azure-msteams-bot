@@ -1,7 +1,7 @@
 {
 	"qa1": {
 		"question": "Please choose which SOLIZE service you are interested in",
-		"suggestion": ["Staffing", "Other"]
+		"suggestion": ["Staffing", "Others"]
 	},
 	"qa11": {
 		"question": "Would you like to talk to our SOLIZE agent directly?",
@@ -16,8 +16,12 @@
 		"suggestion": ["Mechanical engineer", "IT engineer", "Others"]
 	},
 	"qa311": {
-		"question": "Which industry - Automotive, Heavyindustry, offroad vehicles, robotics… You can also select 'Other' and tell us if you have other options",
-		"suggestion": ["Automotive", "Heavy Industry", "Offroad Vehicles", "Robotics"]
+		"question": "Which industry - Automotive, Heavyindustry, offroad vehicles, roboticsâ€¦ You can also select 'Other' and tell us if you have other options",
+		"suggestion": ["Automotive", "Heavy Industry", "Offroad Vehicles", "Robotics", "Others"]
+	},
+	"qa3111": {
+		"question": "Tell us if you have other options",
+		"suggestion": ""
 	},
 	"qa312": {
 		"question": "How many years of experience is required? - 0 -3 years, 3- 5 years, 5 - 7 years, >7 years.",
@@ -25,11 +29,19 @@
 	},
 	"qa313": {
 		"question": "What kind of Skillset/Tool Knowledge is required? Please select multiple skillsets if needed. You can also select 'Other' and tell us if you have specific skillsets.",
-		"suggestion": ["CATIA", "NX"]
+		"suggestion": ["CATIA", "NX", "Others"]
+	},
+	"qa3131": {
+		"question": "Tell us if you have specific skillsets.",
+		"suggestion": ""
 	},
 	"qa321": {
-		"question": "Which industry - Automotive, Heavyindustry, offroad vehicles, robotics… You can also select 'Other' and tell us if you have other options",
-		"suggestion": ["Automotive", "Heavy Industry", "Offroad Vehicles", "Robotics"]
+		"question": "Which industry - Automotive, Heavyindustry, offroad vehicles, roboticsâ€¦ You can also select 'Other' and tell us if you have other options",
+		"suggestion": ["Automotive", "Heavy Industry", "Offroad Vehicles", "Robotics", "Others"]
+	},
+	"qa3211": {
+		"question": "Tell us if you have other options",
+		"suggestion": ""
 	},
 	"qa322": {
 		"question": "How many years of experience is required? - 0 -3 years, 3- 5 years, 5 - 7 years, >7 years.",
@@ -37,7 +49,11 @@
 	},
 	"qa323": {
 		"question": "What kind of Skillset/Tool Knowledge is required? Please select multiple skillsets if needed. You can also select 'Other' and tell us if you have specific skillsets.",
-		"suggestion": ["Java", "Python"]
+		"suggestion": ["Java", "Python", "Others"]
+	},
+	"qa3231": {
+		"question": "Tell us if you have specific skillsets.",
+		"suggestion": ""
 	},
 	"qa4": {
 		"question": "Can you tell us the location of the workplace? (Ex. City/State/Zipcode)",
