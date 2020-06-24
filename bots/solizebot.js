@@ -28,6 +28,7 @@ const question = {
 	qa4: 'qa4',
 	qa5: 'qa5',
 	qa6: 'qa6',
+	qa6: 'qa61',
 	qa7: 'qa7',
 	qa8: 'qa8',
 	upload: 'upload',
@@ -428,15 +429,33 @@ class CustomPromptBot extends ActivityHandler {
 				result = this.validateText(input);
 				if (result.success) {
 					profile.qa6 = result.name;
-					await turnContext.sendActivity("OK! That's all the questions. We'll look into the information you have provided, and our SOLIZE agent will contact you shortly.");
-					await turnContext.sendActivity("Do you have any preference on Date and Time for our agent to contact you? (ex. dd-mm-yyyy - 01-01-1900)");
-					flow.lastQuestionAsked = question.qa7;
-					//profile = {};
+					if(result.name == "Yes"){
+						await turnContext.sendActivity(questions['qa61'].question);
+						flow.lastQuestionAsked = question.qa61; 
+					} else {
+						await turnContext.sendActivity("OK! That's all the questions. We'll look into the information you have provided, and our SOLIZE agent will contact you shortly.");
+						await turnContext.sendActivity("Do you have any preference on Date and Time for our agent to contact you? (ex. dd-mm-yyyy - 01-01-1900)");
+						flow.lastQuestionAsked = question.qa7;
+					}
 					break;
 				} else {
 					await turnContext.sendActivity(result.message || "I'm sorry, I didn't understand that.");
 					await this.sendSuggestedActions(turnContext, 'qa6',questions);
 					flow.lastQuestionAsked = question.qa6;
+					break;
+				}
+			case question.qa61:
+				result = this.validateInput(input);
+				if (result.success) {
+					profile.qa61 = result.name;
+					await turnContext.sendActivity("OK! That's all the questions. We'll look into the information you have provided, and our SOLIZE agent will contact you shortly.");
+					await turnContext.sendActivity("Do you have any preference on Date and Time for our agent to contact you? (ex. dd-mm-yyyy - 01-01-1900)");
+					flow.lastQuestionAsked = question.qa7;
+					break;
+				} else {
+					await turnContext.sendActivity(result.message || "I'm sorry, I didn't understand that.");
+					await turnContext.sendActivity(questions['qa61'].question);
+					flow.lastQuestionAsked = question.qa61; 
 					break;
 				}
 			case question.qa7:
