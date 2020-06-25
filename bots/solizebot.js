@@ -200,7 +200,7 @@ class CustomPromptBot extends ActivityHandler {
 					profile.qa11 = result.name;
 					if(result.name == "Yes"){
 					//68
-						await this.sendActivity(turnContext, questions['qa60'].question);
+						await turnContext.sendActivity(questions['qa60'].question);
 						flow.lastQuestionAsked = question.qa7; 
 					}else{
 					//73
@@ -446,7 +446,7 @@ class CustomPromptBot extends ActivityHandler {
 						flow.lastQuestionAsked = question.qa61; 
 					} else {
 						await turnContext.sendActivity("OK! That's all the questions. We'll look into the information you have provided, and our SOLIZE agent will contact you shortly.");
-						await turnContext.sendActivity("Do you have any preference on Date and Time for our agent to contact you? (ex. dd-mm-yyyy - 01-01-1900)");
+						await turnContext.sendActivity(questions['qa60'].question);
 						flow.lastQuestionAsked = question.qa7;
 					}
 					break;
@@ -461,7 +461,7 @@ class CustomPromptBot extends ActivityHandler {
 				if (result.success) {
 					profile.qa61 = result.name;
 					await turnContext.sendActivity("OK! That's all the questions. We'll look into the information you have provided, and our SOLIZE agent will contact you shortly.");
-					await turnContext.sendActivity("Do you have any preference on Date and Time for our agent to contact you? (ex. dd-mm-yyyy - 01-01-1900)");
+					await turnContext.sendActivity(questions['qa60'].question);
 					flow.lastQuestionAsked = question.qa7;
 					break;
 				} else {
