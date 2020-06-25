@@ -32,8 +32,10 @@ const question = {
 	qa7: 'qa7',
 	qa8: 'qa8',
 	upload: 'upload',
-    	none: 'none',
-	end: 'end'
+    none: 'none',
+	restart: 'restart',
+	end: 'end',
+	endmsg: 'endmsg'
 };
 
 let questions='';
@@ -53,9 +55,10 @@ class CustomPromptBot extends ActivityHandler {
             // Iterate over all new members added to the conversation
             for (const idx in context.activity.membersAdded) {
                 if (context.activity.membersAdded[idx].id !== context.activity.recipient.id) {
+					console.log("hello...");
                     await context.sendActivity('Hi! This is SOLIZE assistant bot.');
                     await context.sendActivity("We assist you in fast staffing placements.");
-                    await context.sendActivity('Please tell us your name.');  
+                    await context.sendActivity('Please tell us your name.'); 
                 }
             }
             // By calling next() you ensure that the next BotHandler is run.
@@ -94,7 +97,7 @@ class CustomPromptBot extends ActivityHandler {
 				await this.handleIncomingAttachment(turnContext);
 				console.log("uploadResponse >> " + uploadResponse);
 				if(!uploadResponse){
-					await turnContext.sendActivity("Upload file size < 2mb");
+					await turnContext.sendActivity("Upload file size >0 and < 2mb");
 					flow.lastQuestionAsked = question.upload;
 				}else{
 					await turnContext.sendActivity("Thanks! We will look into the job description.");
@@ -102,7 +105,7 @@ class CustomPromptBot extends ActivityHandler {
 					flow.lastQuestionAsked = question.qa4; 
 				}
 			} catch(err){
-				await turnContext.sendActivity("Upload file size < 2mb");
+				await turnContext.sendActivity("Upload file size >0 and < 2mb");
 				flow.lastQuestionAsked = question.upload;
 			}
         }  else { 
@@ -110,29 +113,36 @@ class CustomPromptBot extends ActivityHandler {
 			console.log("user input >> " + input);
 			console.log("flow.lastQuestionAsked >> " + flow.lastQuestionAsked);	
             if(input == "Start"){
-                flow.lastQuestionAsked = question.none;
+                flow.lastQuestionAsked = question.restart;
                 console.log(profile);
                 profile = {};
             }else if(input == "End"){ 
                 await turnContext.sendActivity(`OK! Thank you ${ profile.name }. Have a great day!`);
-		flow.lastQuestionAsked = question.end;
+				flow.lastQuestionAsked = question.end;
                 console.log(profile);
                 profile = {};
             }
 
 			let result;
 			switch (flow.lastQuestionAsked) {
-				case question.end:
-					break;
+			case question.end:
+				await turnContext.sendActivity('Click start button to restart the conversation');
+				flow.lastQuestionAsked = question.end;
+				break;
+	
+			case question.restart:
+				profile={};
+			    await turnContext.sendActivity('Hi! This is SOLIZE assistant bot.');
+                await turnContext.sendActivity("We assist you in fast staffing placements.");
+                await turnContext.sendActivity('Please tell us your name.');
+				flow.lastQuestionAsked = question.name;
+				break;
 			// If we're just starting off, we haven't asked the user for any information yet.
 			// Ask the user for their name and update the conversation flag.
 			case question.none:
 				result = input; 
 				profile={};
-				await turnContext.sendActivity('Hi! This is SOLIZE assistant bot.');
-                await turnContext.sendActivity("We assist you in fast staffing placements.");
-                await turnContext.sendActivity('Please tell us your name.');
-				flow.lastQuestionAsked = question.name;
+				
 				break;
 				
 			case question.name:
@@ -169,7 +179,7 @@ class CustomPromptBot extends ActivityHandler {
 				result = this.checkOptions(input,questions['qa1'].suggestion);
 				if (result.success) { 
 					profile.qa1 = result.name;
-					if(result.name != "Other") {
+					if(result.name != "Others") {
 						await this.sendSuggestedActions(turnContext, 'qa2',questions);
 						flow.lastQuestionAsked = question.qa2;
 					}else{
