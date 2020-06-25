@@ -27,12 +27,13 @@ const question = {
 	qa3231: 'qa3231',
 	qa4: 'qa4',
 	qa5: 'qa5',
+	qa60: 'qa60',
 	qa6: 'qa6',
 	qa6: 'qa61',
 	qa7: 'qa7',
 	qa8: 'qa8',
 	upload: 'upload',
-    none: 'none',
+        none: 'none',
 	restart: 'restart',
 	end: 'end',
 	endmsg: 'endmsg'
@@ -199,8 +200,8 @@ class CustomPromptBot extends ActivityHandler {
 					profile.qa11 = result.name;
 					if(result.name == "Yes"){
 					//68
-						await this.sendSuggestedActions(turnContext, 'qa4',questions);
-						flow.lastQuestionAsked = question.qa4; 
+						await this.sendActivity(turnContext, questions['qa60'].question);
+						flow.lastQuestionAsked = question.qa7; 
 					}else{
 					//73
 						await turnContext.sendActivity("Are there anything else we can assist you today? If you wish to start from the beginning, type 'Start'. If you wish to end session, type 'End'. Don't forget, there's always an option to call our SOLIZE agent if you would like to talk directly.");
@@ -435,6 +436,7 @@ class CustomPromptBot extends ActivityHandler {
 					flow.lastQuestionAsked = question.qa5;
 					break;
 				}
+			
 			case question.qa6:
 				result = this.validateText(input);
 				if (result.success) {
