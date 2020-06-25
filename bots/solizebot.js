@@ -658,8 +658,8 @@ class CustomPromptBot extends ActivityHandler {
 				if (result.success) {
 					profile.qa1011 = result.name;
 					if(result.name == "Yes"){
-						await this.sendSuggestedActions(turnContext, 'qa60',questions);
-						flow.lastQuestionAsked = question.qa60;
+						await turnContext.sendActivity(questions['qa60'].question);
+						flow.lastQuestionAsked = question.qa7;
 					}else{
 						await turnContext.sendActivity("Are there anything else we can assist you today? If you wish to start from the beginning, type 'Start'. If you wish to end session, type 'End'. Don't forget, there's always an option to call our SOLIZE agent if you would like to talk directly.");
 						flow.lastQuestionAsked = question.qa8;
