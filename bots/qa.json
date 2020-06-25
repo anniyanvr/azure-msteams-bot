@@ -72,7 +72,7 @@
 		"suggestion": ""
 	},
 	"qa60": {
-		"question": "Do you have any preference on Date and Time for our agent to contact you? (ex. 07:50 PM 25 June 2020 (GMT-4))",
+		"question": "Do you have any preference on Date and Time for our agent to contact you? (ex. HH:MM (AM/PM) DD-MM-YYYY - 07:50 PM 25-08-2020 (GMT-4))",
 		"suggestion": ""
 	},
 	"qa7": {
