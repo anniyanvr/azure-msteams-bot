@@ -33,10 +33,21 @@ const question = {
 	qa7: 'qa7',
 	qa8: 'qa8',
 	upload: 'upload',
-        none: 'none',
+    none: 'none',
 	restart: 'restart',
 	end: 'end',
-	endmsg: 'endmsg'
+	endmsg: 'endmsg',
+	qa101: 'qa101',
+	qa102: 'qa102',
+	qa103: 'qa103',
+	qa104: 'qa104',
+	qa105: 'qa105',
+	qa106: 'qa106',
+	qa107: 'qa107',
+	qa108: 'qa108',
+	qa109: 'qa109',
+	qa1010: 'qa1010',
+	qa1011: 'qa1011'
 };
 
 let questions='';
@@ -180,12 +191,16 @@ class CustomPromptBot extends ActivityHandler {
 				result = this.checkOptions(input,questions['qa1'].suggestion);
 				if (result.success) { 
 					profile.qa1 = result.name;
-					if(result.name != "Others") {
+					if(result.name == "Staffing") {
 						await this.sendSuggestedActions(turnContext, 'qa2',questions);
 						flow.lastQuestionAsked = question.qa2;
-					}else{
+					}else if(result.name == "Others"){
 						await this.sendSuggestedActions(turnContext, 'qa11',questions);
 						flow.lastQuestionAsked = question.qa11;
+					}else{
+						//feedback
+						await this.sendSuggestedActions(turnContext, 'qa101',questions);
+						flow.lastQuestionAsked = question.qa101;
 					}
 					break;
 				} else {
@@ -506,10 +521,189 @@ class CustomPromptBot extends ActivityHandler {
 					await turnContext.sendActivity(result.message || "I'm sorry, I didn't understand that.");
 					break;
 				}
+			case question.qa101:
+				result = this.validateInput(input);
+				if (result.success) {
+					profile.qa101 = result.name;
+					await turnContext.sendActivity(questions['qa102'].question);
+					flow.lastQuestionAsked = question.qa102; 
+					break;
+				} else {
+					await turnContext.sendActivity(result.message || "I'm sorry, I didn't understand that.");
+					await turnContext.sendActivity(questions['qa101'].question);
+					flow.lastQuestionAsked = question.qa101; 
+					break;
+				}
+			case question.qa102:
+				result = this.validateInput(input);
+				if (result.success) {
+					profile.qa102 = result.name;
+					await turnContext.sendActivity(questions['qa103'].question);
+					flow.lastQuestionAsked = question.qa103; 
+					break;
+				} else {
+					await turnContext.sendActivity(result.message || "I'm sorry, I didn't understand that.");
+					await turnContext.sendActivity(questions['qa102'].question);
+					flow.lastQuestionAsked = question.qa102; 
+					break;
+				}
+			case question.qa103:
+				result = this.validateInput(input);
+				if (result.success) {
+					profile.qa103 = result.name;
+					await turnContext.sendActivity(questions['qa104'].question);
+					//flow.lastQuestionAsked = question.qa104; 
+					await this.sendSuggestedActions(turnContext, 'qa105',questions);
+					flow.lastQuestionAsked = question.qa105; 
+					break;
+				} else {
+					await turnContext.sendActivity(result.message || "I'm sorry, I didn't understand that.");
+					await turnContext.sendActivity(questions['qa103'].question);
+					flow.lastQuestionAsked = question.qa103; 
+					break;
+				}
+			/*case question.qa104:
+				result = this.validateInput(input);
+				if (result.success) {
+					profile.qa104 = result.name;
+					await this.sendSuggestedActions(turnContext, 'qa105',questions);
+					flow.lastQuestionAsked = question.qa105; 
+					break;
+				} else {
+					await turnContext.sendActivity(result.message || "I'm sorry, I didn't understand that.");
+					await turnContext.sendActivity(questions['qa104'].question);
+					flow.lastQuestionAsked = question.qa104; 
+					break;
+				}*/
+			case question.qa105:
+				result = this.validateInput(input);
+				if (result.success) {
+					profile.qa105 = result.name;
+					await this.sendSuggestedActions(turnContext, 'qa106',questions);
+					flow.lastQuestionAsked = question.qa106; 
+					break;
+				} else {
+					await turnContext.sendActivity(result.message || "I'm sorry, I didn't understand that.");
+					await this.sendSuggestedActions(turnContext, 'qa105',questions);
+					flow.lastQuestionAsked = question.qa105; 
+					break;
+				}
+			case question.qa106:
+				result = this.validateInput(input);
+				if (result.success) {
+					profile.qa106 = result.name;
+					await this.sendSuggestedActions(turnContext, 'qa107',questions);
+					flow.lastQuestionAsked = question.qa107; 
+					break;
+				} else {
+					await turnContext.sendActivity(result.message || "I'm sorry, I didn't understand that.");
+					await this.sendSuggestedActions(turnContext, 'qa106',questions);
+					flow.lastQuestionAsked = question.qa106; 
+					break;
+				}
+			case question.qa107:
+				result = this.validateInput(input);
+				if (result.success) {
+					profile.qa107 = result.name;
+					await this.sendSuggestedActions(turnContext, 'qa108',questions);
+					flow.lastQuestionAsked = question.qa108; 
+					break;
+				} else {
+					await turnContext.sendActivity(result.message || "I'm sorry, I didn't understand that.");
+					await this.sendSuggestedActions(turnContext, 'qa107',questions);
+					flow.lastQuestionAsked = question.qa107; 
+					break;
+				}
+			case question.qa108:
+				result = this.validateInput(input);
+				if (result.success) {
+					profile.qa108 = result.name;
+					await this.sendSuggestedActions(turnContext, 'qa109',questions);
+					flow.lastQuestionAsked = question.qa109; 
+					break;
+				} else {
+					await turnContext.sendActivity(result.message || "I'm sorry, I didn't understand that.");
+					await this.sendSuggestedActions(turnContext, 'qa108',questions);
+					flow.lastQuestionAsked = question.qa108; 
+					break;
+				}
+			case question.qa109:
+				result = this.validateInput(input);
+				if (result.success) {
+					profile.qa109 = result.name;
+					await turnContext.sendActivity(questions['qa1010'].question);
+					flow.lastQuestionAsked = question.qa1010; 
+					break;
+				} else {
+					await turnContext.sendActivity(result.message || "I'm sorry, I didn't understand that.");
+					await this.sendSuggestedActions(turnContext, 'qa109',questions);
+					flow.lastQuestionAsked = question.qa109; 
+					break;
+				}
+			case question.qa1010:
+				result = this.validateInput(input);
+				if (result.success) {
+					profile.qa1010 = result.name;
+					await this.sendSuggestedActions(turnContext, 'qa1011',questions);
+					flow.lastQuestionAsked = question.qa1011; 
+					break;
+				} else {
+					await turnContext.sendActivity(result.message || "I'm sorry, I didn't understand that.");
+					await turnContext.sendActivity(questions['qa1010'].question);
+					flow.lastQuestionAsked = question.qa1010; 
+					break;
+				}
+			case question.qa1011:
+				result = this.validateInput(input);
+				if (result.success) {
+					profile.qa1011 = result.name;
+					if(result.name == "Yes"){
+						await this.sendSuggestedActions(turnContext, 'qa60',questions);
+						flow.lastQuestionAsked = question.qa60;
+					}else{
+						await turnContext.sendActivity("Are there anything else we can assist you today? If you wish to start from the beginning, type 'Start'. If you wish to end session, type 'End'. Don't forget, there's always an option to call our SOLIZE agent if you would like to talk directly.");
+						flow.lastQuestionAsked = question.qa8;
+					}
+					break;
+				} else {
+					await turnContext.sendActivity(result.message || "I'm sorry, I didn't understand that.");
+					await this.sendSuggestedActions(turnContext, 'qa1011',questions);
+					flow.lastQuestionAsked = question.qa1011; 
+					break;
+				}
 			}
 		}
     }
-
+	
+	static async sendActivityMarkdown(turnContext, question) {
+		await turnContext.sendActivity({
+		type: 'message',
+		textFormat: 'markdown',
+		text: `${ question }`
+		});
+    }
+	
+	/**
+     * Send suggested actions to the user.
+     * @param {TurnContext} turnContext A TurnContext instance containing all the data needed for processing this conversation turn.
+     */
+    static async sendSuggestedActionMD(turnContext, type, questions) {
+		console.log(questions);
+		console.log(questions[type]);
+		let buttons = [];
+		console.log("length >> " + questions[type].suggestion.length);
+        for(var i=0; i<questions[type].suggestion.length; i++)
+		  buttons.push({ 
+			"type" : ActionTypes.ImBack,
+			"title"  : questions[type].suggestion[i],
+			"value" : questions[type].suggestion[i]
+		}); 
+		console.log(buttons);
+        const card = CardFactory.heroCard('', undefined,
+            buttons, {text: questions[type].question});
+        const reply = {type: ActivityTypes.Message, attachments: [card]};
+		await turnContext.sendActivity(reply);
+    }
 	/**
      * Send suggested actions to the user.
      * @param {TurnContext} turnContext A TurnContext instance containing all the data needed for processing this conversation turn.
