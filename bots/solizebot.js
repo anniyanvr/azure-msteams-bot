@@ -576,7 +576,7 @@ class CustomPromptBot extends ActivityHandler {
 					break;
 				}*/
 			case question.qa105:
-				result = this.validateInput(input);
+				result = this.checkOptions(input,questions['qa105'].suggestion);
 				if (result.success) {
 					profile.qa105 = result.name;
 					await this.sendSuggestedActions(turnContext, 'qa106',questions);
@@ -589,7 +589,7 @@ class CustomPromptBot extends ActivityHandler {
 					break;
 				}
 			case question.qa106:
-				result = this.validateInput(input);
+				result = this.checkOptions(input,questions['qa106'].suggestion);
 				if (result.success) {
 					profile.qa106 = result.name;
 					await this.sendSuggestedActions(turnContext, 'qa107',questions);
@@ -602,7 +602,7 @@ class CustomPromptBot extends ActivityHandler {
 					break;
 				}
 			case question.qa107:
-				result = this.validateInput(input);
+				result = this.checkOptions(input,questions['qa107'].suggestion);
 				if (result.success) {
 					profile.qa107 = result.name;
 					await this.sendSuggestedActions(turnContext, 'qa108',questions);
@@ -615,7 +615,7 @@ class CustomPromptBot extends ActivityHandler {
 					break;
 				}
 			case question.qa108:
-				result = this.validateInput(input);
+				result = this.checkOptions(input,questions['qa108'].suggestion);
 				if (result.success) {
 					profile.qa108 = result.name;
 					await this.sendSuggestedActions(turnContext, 'qa109',questions);
@@ -628,7 +628,7 @@ class CustomPromptBot extends ActivityHandler {
 					break;
 				}
 			case question.qa109:
-				result = this.validateInput(input);
+				result = this.checkOptions(input,questions['qa109'].suggestion);
 				if (result.success) {
 					profile.qa109 = result.name;
 					await turnContext.sendActivity(questions['qa1010'].question);
@@ -654,9 +654,10 @@ class CustomPromptBot extends ActivityHandler {
 					break;
 				}
 			case question.qa1011:
-				result = this.validateInput(input);
+				result = this.checkOptions(input,questions['qa1011'].suggestion);
 				if (result.success) {
 					profile.qa1011 = result.name;
+					console.log(result.name);
 					if(result.name == "Yes"){
 						await turnContext.sendActivity(questions['qa60'].question);
 						flow.lastQuestionAsked = question.qa7;
@@ -821,6 +822,7 @@ class CustomPromptBot extends ActivityHandler {
     };
 	static validateInput(input) {
         const name = input && input.trim();
+		console.log(input);
         return { success: true, message: name };
     };
 	
