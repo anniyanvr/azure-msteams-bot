@@ -71,6 +71,10 @@
 		"question": "Please enter any requirements for the position?",
 		"suggestion": ""
 	},
+	"qa60": {
+		"question": "Do you have any preference on Date and Time for our agent to contact you? (ex. 07:50 PM 25 June 2020 (GMT-4))",
+		"suggestion": ""
+	},
 	"qa7": {
 		"question": "OK! That's all the questions. We'll look into the information you have provided, and our SOLIZE agent will contact you shortly. Do you have any preference on Date and Time for our agent to contact you?",
 		"suggestion": ""
