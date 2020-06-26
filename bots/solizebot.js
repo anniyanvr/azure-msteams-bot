@@ -4,6 +4,10 @@ const { ChoiceFactory } = require('botbuilder-choices');
 const path = require('path');
 const fs = require('fs');
 const axios = require('axios');
+
+const MongoClient = require('mongodb').MongoClient;
+const mongourl = "mongodb://solize-mongodb:dkP47dIshFF5aJPUuj2kcIBUxrorDHXjYgIAISjlJJEp50AqFDLsDEoDgpuWF3BefL9cNc1jyKbnvtSQ7XZC0A==@solize-mongodb.mongo.cosmos.azure.com:10255/?ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000&appName=@solize-mongodb@";
+
 // The accessor names for the conversation flow and user profile state property accessors.
 const CONVERSATION_FLOW_PROPERTY = 'CONVERSATION_FLOW_PROPERTY';
 const USER_PROFILE_PROPERTY = 'USER_PROFILE_PROPERTY'; 
@@ -83,7 +87,7 @@ class CustomPromptBot extends ActivityHandler {
             const flow = await this.conversationFlow.get(turnContext, { lastQuestionAsked: question.name });
             const profile = await this.userProfile.get(turnContext, {}); 
 			//flow.lastQuestionAsked = question.name;
-            await CustomPromptBot.fillOutUserProfile(flow, profile, turnContext);  
+            await CustomPromptBot.fillOutUserProfile(flow, profile, turnContext, this.conversationState,this.userState);  
             // By calling next() you ensure that the next BotHandler is run.
             await next();
         });
@@ -100,7 +104,7 @@ class CustomPromptBot extends ActivityHandler {
     }
 
     // Manages the conversation flow for filling out the user's profile.
-    static async fillOutUserProfile(flow, profile, turnContext) {
+    static async fillOutUserProfile(flow, profile, turnContext, conversationState, userState) {
         
 		if (flow.lastQuestionAsked == "upload" && turnContext.activity.attachments && turnContext.activity.attachments.length > 0) {
 			// The user sent an attachment and the bot should handle the incoming attachment.
@@ -127,11 +131,17 @@ class CustomPromptBot extends ActivityHandler {
             if(input == "Start"){
                 flow.lastQuestionAsked = question.restart;
                 console.log(profile);
+				this.saveConversation(profile);
+				//await conversationState.saveChanges(turnContext, false);
+				//await userState.saveChanges(turnContext, false);
                 profile = {};
             }else if(input == "End"){ 
                 await turnContext.sendActivity(`OK! Thank you ${ profile.name }. Have a great day!`);
 				flow.lastQuestionAsked = question.end;
                 console.log(profile);
+				this.saveConversation(profile);
+				//await conversationState.saveChanges(turnContext, false);
+				//await userState.saveChanges(turnContext, false);
                 profile = {};
             }
 
@@ -775,6 +785,18 @@ class CustomPromptBot extends ActivityHandler {
             localPath: localFileName
         };
     }
+	
+	static async saveConversation(profile){
+		MongoClient.connect(mongourl, function(err, db) {
+		  if (err) throw err;
+		  var dbo = db.db("solizebot");
+		  dbo.collection("solizebot").insertOne(profile, function(err, res) {
+			if (err) throw err;
+			console.log("1 document inserted");
+			db.close();
+		  });
+		});
+	}
 	
 	/**
      * Saves incoming attachments to disk by calling `this.downloadAttachmentAndWrite()` and
