@@ -1,1 +1,126 @@
-
+{
+	"qa1": {
+		"question": "Please choose which SOLIZE service you are interested in",
+		"suggestion": ["Staffing", "Others", "Feedback"]
+	},
+	"qa11": {
+		"question": "Would you like to talk to our SOLIZE agent directly?",
+		"suggestion": ["Yes", "No"]
+	},
+	"qa2": {
+		"question": "Do you already have a job description ?",
+		"suggestion": ["Yes", "No"]
+	},
+	"qa3": {
+		"question": "What type of engineer are you looking for? You can also select 'Other' and tell us if you have other options",
+		"suggestion": ["Mechanical engineer", "IT engineer", "Others"]
+	},
+	"qa311": {
+		"question": "Which industry - Automotive, Heavyindustry, offroad vehicles, robotics… You can also select 'Other' and tell us if you have other options",
+		"suggestion": ["Automotive", "Heavy Industry", "Offroad Vehicles", "Robotics", "Others"]
+	},
+	"qa3111": {
+		"question": "Tell us if you have other options",
+		"suggestion": ""
+	},
+	"qa312": {
+		"question": "How many years of experience is required? - 0 -3 years, 3- 5 years, 5 - 7 years, >7 years.",
+		"suggestion": ["0 -3 years", "3- 5 years", "5 - 7 years", ">7 years"]
+	},
+	"qa313": {
+		"question": "What kind of Skillset/Tool Knowledge is required? Please select multiple skillsets if needed. You can also select 'Other' and tell us if you have specific skillsets.",
+		"suggestion": ["CATIA", "NX", "Others"]
+	},
+	"qa3131": {
+		"question": "Tell us if you have specific skillsets.",
+		"suggestion": ""
+	},
+	"qa321": {
+		"question": "Which industry - Automotive, Heavyindustry, offroad vehicles, robotics You can also select 'Other' and tell us if you have other options",
+		"suggestion": ["Automotive", "Heavy Industry", "Offroad Vehicles", "Robotics", "Others"]
+	},
+	"qa3211": {
+		"question": "Tell us if you have other options",
+		"suggestion": ""
+	},
+	"qa322": {
+		"question": "How many years of experience is required? - 0 -3 years, 3- 5 years, 5 - 7 years, >7 years.",
+		"suggestion": ["0 -3 years", "3- 5 years", "5 - 7 years", ">7 years"]
+	},
+	"qa323": {
+		"question": "What kind of Skillset/Tool Knowledge is required? Please select multiple skillsets if needed. You can also select 'Other' and tell us if you have specific skillsets.",
+		"suggestion": ["Java", "Python", "Others"]
+	},
+	"qa3231": {
+		"question": "Tell us if you have specific skillsets.",
+		"suggestion": ""
+	},
+	"qa4": {
+		"question": "Can you tell us the location of the workplace? (Ex. City/State/Zipcode)",
+		"suggestion": ""
+	},
+	"qa5": {
+		"question": "Do you already have a Start Date? When do you need the engineer to start working?",
+		"suggestion": ["ASAP", "Within 1month", "Within 3month", "Unexpect"]
+	},
+	"qa6": {
+		"question": "Can you tell us if you have any other requirements for the position?",
+		"suggestion": ["Yes", "No"]
+	},
+	"qa61": {
+		"question": "Please enter any requirements for the position?",
+		"suggestion": ""
+	},
+	"qa60": {
+		"question": "Do you have any preference on Date and Time for our agent to contact you? (Date Format HH:MM (AM/PM) DD-MM-YYYY - ex.07:50 PM 25-07-2020 (GMT-4))",
+		"suggestion": ""
+	},
+	"qa7": {
+		"question": "OK! That's all the questions. We'll look into the information you have provided, and our SOLIZE agent will contact you shortly. Do you have any preference on Date and Time for our agent to contact you?",
+		"suggestion": ""
+	},
+	"qa101": {
+		"question": "Thank your for participating in our Feedback. Can you tell us the employee's name?",
+		"suggestion": ""
+	},
+	"qa102": {
+		"question": "Can you tell us the name of your company?",
+		"suggestion": ""
+	},
+	"qa103": {
+		"question": "Can you tell us the time frame of which your answers will be based on? (ex. January to February, last quarter, etc.)",
+		"suggestion": ""
+	},
+	"qa104": {
+		"question": "Thanks.\r\nThere will be 5 feedback questions in total, followed by a free comment section. Please rate and answer on the employee's skills, competency, and behaviors from range of 1(unsatisfactory) to 4(exceeds expectations).",
+		"suggestion": ""
+	},
+	"qa105": {
+		"question": "**1. Knowledge and Competence**\r\nDoes the employee show degrees of knowledge & skills necessary for the assigned job duties?",
+		"suggestion": ["4. Exceeeds Expectations", "3. Meets Standards", "2. Needs Improvement", "1. Unsatisfactory"]
+	},
+	"qa106": {
+		"question": "**2. Analytical Skills**\r\nDoes the employee show degrees of skills necessary for solving problems or coming up with alternate solutions? \r\nDoes the employee exercise the ability to observe, forecast and apply logic?",
+		"suggestion": ["4. Exceeeds Expectations", "3. Meets Standards", "2. Needs Improvement", "1. Unsatisfactory"]
+	},
+	"qa107": {
+		"question": "**3. Self Management**\r\nDoes the employee exercise the ability to perform work with minimal supervision, while fulfilling goals, task priorities, and feedback requirements?",
+		"suggestion": ["4. Exceeeds Expectations", "3. Meets Standards", "2. Needs Improvement", "1. Unsatisfactory"]
+	},
+	"qa108": {
+		"question": "**4. Teamwork**\r\nDoes the employee show degree of cooperation, support and understanding of co-workers, and promotes synergy and a productive environment?",
+		"suggestion": ["4. Exceeeds Expectations", "3. Meets Standards", "2. Needs Improvement", "1. Unsatisfactory"]
+	},
+	"qa109": {
+		"question": "**5. Overall**\r\nOverall, how would you rate the employee's placement/performance/ so on?",
+		"suggestion": ["4. Exceeeds Expectations", "3. Meets Standards", "2. Needs Improvement", "1. Unsatisfactory"]
+	},
+	"qa1010": {
+		"question": "If you have other comments, please leave us a comment.",
+		"suggestion": ""
+	},
+	"qa1011": {
+		"question": "OK! That's all the questions. We'll send you your feedback content in the email you have provided us.\r\nWould you like to talk to a SOL agent about the feedback?",
+		"suggestion": ["Yes", "No"]
+	}
+}
